@@ -65,8 +65,7 @@ public class CurrentWeatherFragment extends Fragment implements ActivityCompat.O
         // get  lat,lang of the current location from GPSTracker
 
         GPSTracker gps = new GPSTracker(getContext());
-        Log.i("Madhu","lat,lang"+Double.toString(gps.getLatitude())+" "+Double.toString(gps.getLongitude()));
-        if (gps.canGetLocation()) {
+        if (gps.canGetLocation()&& (!Double.toString(gps.getLatitude()).equals("0.0"))&& (!Double.toString(gps.getLongitude()).equals("0.0"))) {
             getTemperature(Double.toString(gps.getLatitude()),Double.toString(gps.getLongitude()));
         }else{
              Toast.makeText(getActivity(),"Please enable GPS location in your device",Toast.LENGTH_LONG).show();
@@ -90,7 +89,7 @@ public class CurrentWeatherFragment extends Fragment implements ActivityCompat.O
                 try {
                     //JSON parsing to ge the current temperature
                     JSONObject jsonObj = new JSONObject(response.toString());
-                    Log.i("madhu", "madhu " + response.toString());
+
                     JSONObject main = jsonObj.getJSONObject("main");
                     String temperature = main.getString("temp");
                     // Float temperature_kelvin = Float.parseFloat(temperature);

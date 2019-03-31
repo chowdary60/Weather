@@ -72,7 +72,7 @@ public class FiveDayTemperatureFragment  extends Fragment{
 
        // get lattitude and longitude
         GPSTracker gps = new GPSTracker(getContext());
-        if(gps.canGetLocation()){
+        if(gps.canGetLocation()&& (!Double.toString(gps.getLatitude()).equals("0.0"))&& (!Double.toString(gps.getLongitude()).equals("0.0"))){
            getFiveDayForecast(Double.toString(gps.getLatitude()),Double.toString(gps.getLongitude()));
         }else{
             Toast.makeText(getActivity(),"Please enable GPS location in your device",Toast.LENGTH_LONG).show();
